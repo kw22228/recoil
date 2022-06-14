@@ -12,3 +12,8 @@ export const categoryAtom = atom<Categories>({
     key: 'category',
     default: Categories.TODO,
 });
+
+export const minutesAtom = atom({
+    key: 'minutes',
+    default: 0,
+});
