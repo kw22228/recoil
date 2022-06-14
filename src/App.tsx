@@ -1,5 +1,6 @@
 import { ThemeProvider } from 'styled-components';
-import TodoList from './components/TodoList/TodoList';
+import RecoilSelector from './components/Practice/RecoilSelector';
+// import TodoList from './components/TodoList/TodoList';
 import GlobalStyle from './style/global';
 import { darkTheme, lightTheme } from './style/theme';
 
@@ -8,7 +9,8 @@ function App() {
         <>
             <ThemeProvider theme={false ? darkTheme : lightTheme}>
                 <GlobalStyle />
-                <TodoList />
+                {/* <TodoList /> */}
+                <RecoilSelector />
             </ThemeProvider>
         </>
     );
