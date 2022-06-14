@@ -1,7 +1,13 @@
+export enum Categories {
+    TODO = 'TODO',
+    DOING = 'DOING',
+    DONE = 'DONE',
+}
+
 export interface ITodo {
     text: string;
     id: number;
-    category: 'TODO' | 'DOING' | 'DONE';
+    category: Categories;
 }
 
 export interface IForm {
