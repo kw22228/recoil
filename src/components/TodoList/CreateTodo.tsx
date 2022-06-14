@@ -1,10 +1,11 @@
 import { useForm } from 'react-hook-form';
-import { useSetRecoilState } from 'recoil';
-import { todoAtom } from '../../recoil/atoms';
-import { IForm } from './types';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { categoryAtom, todoAtom } from '../../recoil/atoms';
+import { IForm, ITodo } from './types';
 
 const CreateTodo = () => {
     const setTodos = useSetRecoilState(todoAtom);
+    const category = useRecoilValue(categoryAtom);
 
     const defaultValues = {
         todo: 'Todo',
@@ -13,7 +14,7 @@ const CreateTodo = () => {
         defaultValues,
     });
     const onValid = ({ todo }: IForm) => {
-        setTodos(prev => [{ text: todo, id: Date.now(), category: 'DONE' }, ...prev]);
+        setTodos(prev => [{ text: todo, id: Date.now(), category: category }, ...prev]);
         setValue('todo', defaultValues.todo);
     };
     return (

@@ -1,22 +1,38 @@
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import Todo from './Todo';
 import CreateTodo from './CreateTodo';
-import { todoAtom } from '../../recoil/atoms';
+import { categoryAtom, todoAtom } from '../../recoil/atoms';
+import { todoSelector } from '../../recoil/selectors';
+import React from 'react';
+import { Categories, ITodo } from './types';
 
 const TodoList = () => {
-    const todos = useRecoilValue(todoAtom);
-    console.log(todos);
+    // const todos = useRecoilValue(todoAtom);
+    const todos = useRecoilValue(todoSelector);
+    const [category, setCategory] = useRecoilState(categoryAtom);
+
+    const onInput = (event: React.FormEvent<HTMLSelectElement>) => {
+        const value = event.currentTarget.value as Categories;
+        setCategory(value);
+    };
 
     return (
         <div>
             <h1>Todo List</h1>
-            <hr />
             <CreateTodo />
-            <ul>
-                {todos.map(todo => (
-                    <Todo key={todo.id} {...todo} />
-                ))}
-            </ul>
+            <select onInput={onInput} value={category}>
+                <option value={Categories.TODO}>TODO</option>
+                <option value={Categories.DOING}>DOING</option>
+                <option value={Categories.DONE}>DONE</option>
+            </select>
+            <hr />
+            {todos && (
+                <ul>
+                    {todos.map(todo => (
+                        <Todo {...todo} key={todo.id} />
+                    ))}
+                </ul>
+            )}
         </div>
     );
 };
