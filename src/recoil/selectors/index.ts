@@ -2,7 +2,7 @@
 
 import { selector } from 'recoil';
 import { Categories, ITodo } from '../../components/TodoList/types';
-import { categoryAtom, todoAtom } from '../atoms';
+import { categoryAtom, minutesAtom, todoAtom } from '../atoms';
 
 export const todoSelector = selector({
     key: 'todoSelector',
@@ -26,5 +26,18 @@ export const todoSelector = selector({
         }
 
         return selectTodos;
+    },
+});
+
+export const minuteToHourSelector = selector<number>({
+    key: 'minuteToHour',
+    get: ({ get }) => {
+        const minutes = get(minutesAtom);
+
+        return minutes / 60;
+    },
+    set: ({ set }, newValue) => {
+        const minutes = Number(newValue) * 60;
+        set(minutesAtom, minutes);
     },
 });
