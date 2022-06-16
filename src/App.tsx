@@ -1,5 +1,6 @@
 import { ThemeProvider } from 'styled-components';
-import RecoilSelector from './components/Practice/RecoilSelector';
+import DroppableCard from './components/DragDrop/DroppableCard/DroppableCard';
+// import RecoilSelector from './components/Practice/RecoilSelector';
 // import TodoList from './components/TodoList/TodoList';
 import GlobalStyle from './style/global';
 import { darkTheme, lightTheme } from './style/theme';
@@ -7,10 +8,11 @@ import { darkTheme, lightTheme } from './style/theme';
 function App() {
     return (
         <>
-            <ThemeProvider theme={false ? darkTheme : lightTheme}>
+            <ThemeProvider theme={true ? darkTheme : lightTheme}>
                 <GlobalStyle />
                 {/* <TodoList /> */}
-                <RecoilSelector />
+                {/* <RecoilSelector /> */}
+                {<DroppableCard />}
             </ThemeProvider>
         </>
     );
