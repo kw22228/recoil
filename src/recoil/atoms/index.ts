@@ -2,6 +2,7 @@
 
 import { atom } from 'recoil';
 import { Categories, ITodo } from '../../components/TodoList/types';
+import { IDragDrop } from './types';
 
 export const todoAtom = atom<ITodo[]>({
     key: 'todo',
@@ -18,7 +19,11 @@ export const minutesAtom = atom({
     default: 0,
 });
 
-export const dragDropAtom = atom({
+export const dragDropAtom = atom<IDragDrop>({
     key: 'dragDrop',
-    default: ['a', 'b', 'c', 'd', 'e', 'f'],
+    default: {
+        'To do': ['a', 'b', 'c', 'd', 'e', 'f'],
+        Doing: ['aa', 'bb'],
+        Done: [],
+    },
 });
