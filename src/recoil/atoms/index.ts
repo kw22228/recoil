@@ -17,3 +17,8 @@ export const minutesAtom = atom({
     key: 'minutes',
     default: 0,
 });
+
+export const dragDropAtom = atom({
+    key: 'dragDrop',
+    default: ['a', 'b', 'c', 'd', 'e', 'f'],
+});
