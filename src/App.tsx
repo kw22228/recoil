@@ -1,5 +1,5 @@
 import { ThemeProvider } from 'styled-components';
-import DroppableCard from './components/DragDrop/DroppableCard/DroppableCard';
+import DragContext from './components/DragDrop/DragContext/DragContext';
 // import RecoilSelector from './components/Practice/RecoilSelector';
 // import TodoList from './components/TodoList/TodoList';
 import GlobalStyle from './style/global';
@@ -12,7 +12,7 @@ function App() {
                 <GlobalStyle />
                 {/* <TodoList /> */}
                 {/* <RecoilSelector /> */}
-                {<DroppableCard />}
+                {<DragContext />}
             </ThemeProvider>
         </>
     );
