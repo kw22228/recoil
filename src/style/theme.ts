@@ -7,7 +7,9 @@ export const lightTheme: DefaultTheme = {
 };
 
 export const darkTheme: DefaultTheme = {
-    bgColor: 'navy',
+    bgColor: '#3f8cf2',
     textColor: '#f4f4f4',
     accentColor: '#e2720c',
+    boardColor: '#dadfe9',
+    cardColor: 'white',
 };
