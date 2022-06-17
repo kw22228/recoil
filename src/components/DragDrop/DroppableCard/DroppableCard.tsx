@@ -1,22 +1,51 @@
 import * as s from './DroppableCard.style';
 import { Droppable } from 'react-beautiful-dnd';
 import DraggableCard from '../DraggableCard/DraggableCard';
-import React from 'react';
+import { useForm } from 'react-hook-form';
+import { useRecoilState } from 'recoil';
+import { dragDropAtom } from '../../../recoil/atoms';
+import { ITodo } from '../../../recoil/atoms/types';
 
 interface IProps {
-    todoList: string[];
+    todoList: ITodo[];
     id: string;
 }
 
+interface IForm {
+    todo: string;
+}
+
 const DroppableCard = ({ todoList, id }: IProps) => {
+    const { register, handleSubmit, setValue } = useForm<IForm>();
+    const [todos, setTodos] = useRecoilState(dragDropAtom);
+    const onValid = (data: IForm) => {
+        console.log(todos);
+        setValue('todo', '');
+    };
+
     return (
         <s.Wrapper>
             <s.CardHeader>{id}</s.CardHeader>
+            <s.Form onSubmit={handleSubmit(onValid)}>
+                <input
+                    type="text"
+                    placeholder={`Add task on ${id}`}
+                    {...register('todo', { required: true })}
+                />
+            </s.Form>
             <Droppable droppableId={id}>
-                {provided => (
-                    <s.Board ref={provided.innerRef} {...provided.droppableProps}>
-                        {todoList.map((todo: string, index: number) => (
-                            <DraggableCard todo={todo} key={todo} index={index} />
+                {(
+                    provided, //droppableProps, placeholder, innerRef
+                    snapshot //isDraggingOver, draggingOverWith, draggingFromThisWith, isUsingPlaceholder
+                ) => (
+                    <s.Board
+                        isDraggingOver={snapshot.isDraggingOver}
+                        draggingFromThisWith={Boolean(snapshot.draggingFromThisWith)}
+                        ref={provided.innerRef}
+                        {...provided.droppableProps}
+                    >
+                        {todoList.map((todo: ITodo, index: number) => (
+                            <DraggableCard todo={todo} key={todo.id} index={index} />
                         ))}
 
                         {/* Draggable을 움직일때, 밑에 height가 줄어드는걸 방지한다. */}
