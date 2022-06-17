@@ -22,8 +22,21 @@ export const minutesAtom = atom({
 export const dragDropAtom = atom<IDragDrop>({
     key: 'dragDrop',
     default: {
-        'To do': ['a', 'b', 'c', 'd', 'e', 'f'],
-        Doing: ['aa', 'bb'],
+        'To do': [
+            {
+                todo: 'To do 1',
+                id: 1231123212,
+            },
+            {
+                todo: 'To do 2',
+                id: 123123123,
+            },
+            {
+                todo: 'To do 3',
+                id: 1243212,
+            },
+        ],
+        Doing: [],
         Done: [],
     },
 });
