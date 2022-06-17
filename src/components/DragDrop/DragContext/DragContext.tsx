@@ -8,27 +8,24 @@ import { cloneDeep } from 'lodash';
 const DragContext = () => {
     const [todos, setTodos] = useRecoilState(dragDropAtom);
     const onDragEnd = ({ destination, source, draggableId }: DropResult) => {
-        if (
-            !destination ||
-            (destination?.droppableId === source.droppableId && destination.index === source.index)
-        ) {
-            return;
-        }
-
-        setTodos(prevTodos => {
-            //1. 뺀 아이템 삭제
-            const newTodos = cloneDeep(prevTodos);
-            newTodos[source.droppableId].splice(source.index, 1);
-
-            //2. 아이템 집어넣기
-            newTodos[String(destination?.droppableId)].splice(
-                Number(destination?.index),
-                0,
-                draggableId
-            );
-
-            return newTodos;
-        });
+        // if (
+        //     !destination ||
+        //     (destination?.droppableId === source.droppableId && destination.index === source.index)
+        // ) {
+        //     return;
+        // }
+        // setTodos(prevTodos => {
+        //     //1. 뺀 아이템 삭제
+        //     const newTodos = cloneDeep(prevTodos);
+        //     newTodos[source.droppableId].splice(source.index, 1);
+        //     //2. 아이템 집어넣기
+        //     newTodos[String(destination?.droppableId)].splice(
+        //         Number(destination?.index),
+        //         0,
+        //         draggableId
+        //     );
+        //     return newTodos;
+        // });
     };
     return (
         <s.Wrapper>
