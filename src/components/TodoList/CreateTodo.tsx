@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { categoryAtom, todoAtom } from '../../recoil/atoms';
-import { IForm, ITodo } from './types';
+import { IForm } from './types';
 
 const CreateTodo = () => {
     const setTodos = useSetRecoilState(todoAtom);
