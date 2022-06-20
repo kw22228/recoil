@@ -12,15 +12,27 @@ interface IProps {
 }
 
 interface IForm {
-    todo: string;
+    [key: string]: string;
 }
 
 const DroppableCard = ({ todoList, id }: IProps) => {
     const { register, handleSubmit, setValue } = useForm<IForm>();
     const [todos, setTodos] = useRecoilState(dragDropAtom);
     const onValid = (data: IForm) => {
-        console.log(todos);
-        setValue('todo', '');
+        setValue(id, '');
+
+        setTodos(prevTodos => {
+            return {
+                ...prevTodos,
+                [id]: [
+                    ...prevTodos[id],
+                    {
+                        todo: data[id],
+                        id: Date.now(),
+                    },
+                ],
+            };
+        });
     };
 
     return (
@@ -30,7 +42,7 @@ const DroppableCard = ({ todoList, id }: IProps) => {
                 <input
                     type="text"
                     placeholder={`Add task on ${id}`}
-                    {...register('todo', { required: true })}
+                    {...register(id, { required: true })}
                 />
             </s.Form>
             <Droppable droppableId={id}>

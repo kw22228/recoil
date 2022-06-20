@@ -11,7 +11,7 @@ interface IProps {
 const DraggableCard = ({ todo, index }: IProps) => {
     return (
         // draggableId와 key는 같아야함
-        <Draggable draggableId={todo.todo} index={index} key={todo.todo}>
+        <Draggable draggableId={String(todo.id)} index={index} key={todo.id}>
             {(provided, snapshot) => (
                 <s.Card
                     isDragging={snapshot.isDragging}
